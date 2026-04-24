@@ -1,0 +1,1767 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مَشورة — استشارات قانونية ذكية</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #faf7f0;
+    --paper-warm: #f4ede0;
+    --ink: #1a1612;
+    --ink-soft: #4a4339;
+    --ink-mute: #7a7165;
+    --line: #d8cfbb;
+    --line-soft: #e8e2d2;
+    --gold: #8b6914;
+    --gold-bright: #a8821a;
+    --gold-soft: #f0e6c8;
+    --emerald: #1f4e3d;
+    --emerald-soft: #d4e4dc;
+    --burgundy: #6b2737;
+    --burgundy-soft: #f0d6dc;
+    --shadow: 0 1px 2px rgba(26, 22, 18, 0.05), 0 4px 16px rgba(26, 22, 18, 0.04);
+    --shadow-lg: 0 4px 8px rgba(26, 22, 18, 0.06), 0 16px 48px rgba(26, 22, 18, 0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Cairo', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    min-height: 100vh;
+    line-height: 1.7;
+    font-weight: 400;
+    background-image:
+      radial-gradient(ellipse 800px 600px at 20% -10%, rgba(139, 105, 20, 0.04), transparent),
+      radial-gradient(ellipse 600px 400px at 100% 100%, rgba(31, 78, 61, 0.03), transparent);
+  }
+
+  .serif { font-family: 'Amiri', serif; }
+
+  /* Subtle paper texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(45deg, transparent 0, transparent 60px, rgba(0,0,0,0.005) 60px, rgba(0,0,0,0.005) 61px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* === HEADER === */
+  .header {
+    border-bottom: 1px solid var(--line);
+    background: var(--paper);
+    padding: 18px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(8px);
+  }
+
+  .brand-cluster {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .brand-emblem {
+    width: 44px;
+    height: 44px;
+    border: 1.5px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: var(--paper);
+  }
+
+  .brand-emblem::before {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border: 0.5px solid var(--gold);
+    border-radius: 50%;
+  }
+
+  .brand-emblem .letter {
+    font-family: 'Amiri', serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--gold);
+    z-index: 1;
+  }
+
+  .brand-text-cluster .name {
+    font-family: 'Amiri', serif;
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    line-height: 1;
+  }
+
+  .brand-text-cluster .tag {
+    font-size: 10px;
+    color: var(--ink-mute);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-top: 4px;
+    font-weight: 500;
+  }
+
+  .header-meta {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+
+  .ministry-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    background: var(--paper-warm);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 500;
+  }
+
+  .ministry-icon {
+    width: 14px;
+    height: 14px;
+    color: var(--gold);
+  }
+
+  /* === MAIN === */
+  .container {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 48px 32px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* === HERO (Step 1: Welcome + Topic Selection) === */
+  .hero {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    background: var(--gold-soft);
+    border: 1px solid rgba(139, 105, 20, 0.2);
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+  }
+
+  .hero-title {
+    font-family: 'Amiri', serif;
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+    color: var(--ink);
+  }
+
+  .hero-title .accent {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .hero-sub {
+    font-size: 17px;
+    color: var(--ink-soft);
+    max-width: 580px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .hero-divider {
+    margin: 40px auto;
+    width: 100px;
+    height: 24px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero-divider::before,
+  .hero-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+
+  .hero-divider .ornament {
+    margin: 0 12px;
+    color: var(--gold);
+    font-size: 14px;
+  }
+
+  /* === Topic Cards (Step 1) === */
+  .topics-section { margin-bottom: 32px; }
+
+  .section-label {
+    font-family: 'Amiri', serif;
+    font-size: 14px;
+    color: var(--ink-mute);
+    text-align: center;
+    margin-bottom: 24px;
+    letter-spacing: 0.05em;
+  }
+
+  .section-label::before,
+  .section-label::after {
+    content: '◆';
+    margin: 0 12px;
+    color: var(--gold);
+    font-size: 8px;
+    vertical-align: middle;
+  }
+
+  .topics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+  }
+
+  .topic-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 24px 20px;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .topic-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 0%, rgba(139, 105, 20, 0.04) 100%);
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+
+  .topic-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+  }
+
+  .topic-card:hover::before { opacity: 1; }
+
+  .topic-card.active {
+    border-color: var(--gold);
+    background: var(--gold-soft);
+  }
+
+  .topic-card.active::before { opacity: 1; }
+
+  .topic-icon {
+    width: 44px;
+    height: 44px;
+    margin: 0 auto 14px;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .topic-name {
+    font-family: 'Amiri', serif;
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: var(--ink);
+  }
+
+  .topic-desc {
+    font-size: 11.5px;
+    color: var(--ink-mute);
+    line-height: 1.5;
+  }
+
+  /* === Question Form (Step 2) === */
+  .question-section {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow);
+    display: none;
+  }
+
+  .question-section.show {
+    display: block;
+    animation: slideUp 0.4s ease-out;
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .question-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+
+  .question-title {
+    font-family: 'Amiri', serif;
+    font-size: 22px;
+    font-weight: 700;
+  }
+
+  .question-title-sub {
+    font-size: 13px;
+    color: var(--ink-mute);
+    margin-top: 4px;
+  }
+
+  .selected-topic-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    background: var(--emerald-soft);
+    color: var(--emerald);
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .question-textarea {
+    width: 100%;
+    min-height: 160px;
+    padding: 18px 20px;
+    background: var(--paper-warm);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 15px;
+    color: var(--ink);
+    resize: vertical;
+    transition: all 0.2s;
+    line-height: 1.7;
+  }
+
+  .question-textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+    background: var(--paper);
+    box-shadow: 0 0 0 3px rgba(139, 105, 20, 0.08);
+  }
+
+  .question-textarea::placeholder {
+    color: var(--ink-mute);
+  }
+
+  /* Suggested questions */
+  .suggested {
+    margin-top: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .suggested-label {
+    width: 100%;
+    font-size: 12px;
+    color: var(--ink-mute);
+    margin-bottom: 4px;
+  }
+
+  .suggested-chip {
+    padding: 8px 14px;
+    background: var(--paper-warm);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .suggested-chip:hover {
+    background: var(--gold-soft);
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  /* Submit button */
+  .submit-row {
+    margin-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .privacy-note {
+    font-size: 12px;
+    color: var(--ink-mute);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .privacy-icon { color: var(--emerald); }
+
+  .btn-primary {
+    padding: 14px 28px;
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    border-radius: 10px;
+    font-family: 'Amiri', serif;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .btn-primary:hover {
+    background: var(--gold);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .btn-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  /* === Processing (Step 3) === */
+  .processing {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 48px 32px;
+    margin-bottom: 24px;
+    text-align: center;
+    display: none;
+  }
+
+  .processing.show { display: block; }
+
+  .proc-emblem {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 20px;
+    border: 1.5px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .proc-emblem::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    animation: spin 1.5s linear infinite;
+    opacity: 0.6;
+  }
+
+  .proc-emblem-inner {
+    color: var(--gold);
+    font-family: 'Amiri', serif;
+    font-size: 28px;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .proc-title {
+    font-family: 'Amiri', serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .proc-sub {
+    font-size: 13px;
+    color: var(--ink-mute);
+    margin-bottom: 28px;
+  }
+
+  .proc-steps {
+    max-width: 480px;
+    margin: 0 auto;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .proc-step {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: var(--paper-warm);
+    border-radius: 10px;
+    opacity: 0;
+    transform: translateX(8px);
+    animation: fadeInRight 0.4s forwards;
+  }
+
+  @keyframes fadeInRight {
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .proc-step.active {
+    background: var(--gold-soft);
+    border: 1px solid rgba(139, 105, 20, 0.2);
+  }
+
+  .proc-step-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--line);
+    flex-shrink: 0;
+  }
+
+  .proc-step.active .proc-step-dot {
+    background: var(--gold);
+    box-shadow: 0 0 0 4px rgba(139, 105, 20, 0.15);
+  }
+
+  .proc-step.done .proc-step-dot {
+    background: var(--emerald);
+  }
+
+  .proc-step-text {
+    font-size: 14px;
+    flex: 1;
+  }
+
+  .proc-step.active .proc-step-text { color: var(--gold); font-weight: 600; }
+  .proc-step.done .proc-step-text { color: var(--ink-soft); }
+
+  /* === Paywall (Step 4) === */
+  .paywall {
+    background: var(--paper);
+    border: 1px solid var(--gold);
+    border-radius: 20px;
+    padding: 48px;
+    text-align: center;
+    margin-bottom: 24px;
+    display: none;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .paywall.show { display: block; animation: slideUp 0.5s; }
+
+  .paywall::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, var(--gold-soft), transparent 70%);
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  .paywall-eyebrow {
+    color: var(--emerald);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .paywall-title {
+    font-family: 'Amiri', serif;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .paywall-sub {
+    font-size: 15px;
+    color: var(--ink-soft);
+    max-width: 460px;
+    margin: 0 auto 32px;
+    line-height: 1.7;
+    position: relative;
+    z-index: 1;
+  }
+
+  .paywall-preview {
+    background: var(--paper-warm);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 28px;
+    text-align: right;
+    position: relative;
+    z-index: 1;
+    max-height: 140px;
+    overflow: hidden;
+  }
+
+  .paywall-preview::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(transparent, var(--paper-warm));
+  }
+
+  .preview-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 10px;
+    align-items: flex-start;
+  }
+
+  .preview-row-icon {
+    color: var(--gold);
+    margin-top: 4px;
+  }
+
+  .preview-row-text {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--ink);
+    flex: 1;
+  }
+
+  .preview-row-text.blur {
+    filter: blur(4px);
+    user-select: none;
+  }
+
+  /* Price card */
+  .price-card {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .price-amount {
+    font-family: 'Amiri', serif;
+    font-size: 56px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .price-currency {
+    font-family: 'Amiri', serif;
+    font-size: 22px;
+    color: var(--ink-soft);
+    font-weight: 700;
+  }
+
+  .price-note {
+    font-size: 13px;
+    color: var(--ink-mute);
+    margin-bottom: 28px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .pay-button {
+    width: 100%;
+    max-width: 360px;
+    padding: 16px 32px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-family: 'Amiri', serif;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    box-shadow: 0 4px 16px rgba(139, 105, 20, 0.25);
+    position: relative;
+    z-index: 1;
+  }
+
+  .pay-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(139, 105, 20, 0.35);
+  }
+
+  .payment-methods {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .pay-method {
+    padding: 6px 12px;
+    background: var(--paper-warm);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--ink-soft);
+  }
+
+  /* === Report (Step 5: Final consultation) === */
+  .report {
+    display: none;
+  }
+
+  .report.show { display: block; animation: slideUp 0.5s; }
+
+  /* Report header */
+  .report-header {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .report-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background: var(--gold);
+  }
+
+  .report-meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .report-meta-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .report-meta-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: var(--gold-soft);
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .report-meta-info .label {
+    font-size: 11px;
+    color: var(--ink-mute);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .report-meta-info .title {
+    font-family: 'Amiri', serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 2px;
+  }
+
+  .report-meta-right {
+    text-align: left;
+    font-size: 12px;
+    color: var(--ink-mute);
+  }
+
+  .report-id {
+    font-weight: 600;
+    color: var(--ink-soft);
+    margin-bottom: 4px;
+    font-family: 'Cairo', monospace;
+    direction: ltr;
+  }
+
+  .report-title-main {
+    font-family: 'Amiri', serif;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    line-height: 1.3;
+  }
+
+  .report-customer-question {
+    background: var(--paper-warm);
+    border-right: 3px solid var(--ink-mute);
+    padding: 16px 20px;
+    border-radius: 8px;
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.8;
+    font-style: italic;
+  }
+
+  /* Verdict box */
+  .verdict-box {
+    background: linear-gradient(135deg, var(--emerald) 0%, #2a6850 100%);
+    color: white;
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .verdict-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 240px;
+    height: 240px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.08), transparent);
+    border-radius: 50%;
+    transform: translate(60px, -60px);
+  }
+
+  .verdict-eyebrow {
+    font-size: 11px;
+    opacity: 0.8;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .verdict-title {
+    font-family: 'Amiri', serif;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .verdict-text {
+    font-size: 15px;
+    line-height: 1.8;
+    opacity: 0.95;
+    position: relative;
+    z-index: 1;
+  }
+
+  .verdict-text strong {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 1px 8px;
+    border-radius: 4px;
+    font-weight: 700;
+  }
+
+  /* Sections */
+  .section-block {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 28px;
+    margin-bottom: 16px;
+  }
+
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  .section-num {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: var(--paper);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Amiri', serif;
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  .section-name {
+    font-family: 'Amiri', serif;
+    font-size: 19px;
+    font-weight: 700;
+  }
+
+  .section-body {
+    font-size: 15px;
+    line-height: 1.85;
+    color: var(--ink);
+  }
+
+  .section-body p { margin-bottom: 12px; }
+
+  .section-body strong {
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  /* Reference articles */
+  .article-citation {
+    background: var(--paper-warm);
+    border-right: 3px solid var(--gold);
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+
+  .article-citation-source {
+    font-size: 11px;
+    color: var(--gold);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .article-citation-text {
+    color: var(--ink-soft);
+    line-height: 1.7;
+    font-style: italic;
+  }
+
+  /* Steps list */
+  .steps-list {
+    counter-reset: step;
+    list-style: none;
+    padding: 0;
+  }
+
+  .steps-list-item {
+    counter-increment: step;
+    display: flex;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  .steps-list-item:last-child { border-bottom: none; }
+
+  .steps-list-item::before {
+    content: counter(step);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--gold-soft);
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Amiri', serif;
+    font-weight: 700;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+
+  .step-content { flex: 1; }
+
+  .step-content-title {
+    font-weight: 600;
+    margin-bottom: 4px;
+    font-size: 14.5px;
+  }
+
+  .step-content-desc {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+
+  /* Lawyer CTA */
+  .lawyer-cta {
+    background: linear-gradient(135deg, var(--burgundy) 0%, #8a3146 100%);
+    color: white;
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 16px;
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .lawyer-cta-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    backdrop-filter: blur(8px);
+  }
+
+  .lawyer-cta-content { flex: 1; min-width: 240px; }
+
+  .lawyer-cta-eyebrow {
+    font-size: 11px;
+    opacity: 0.8;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .lawyer-cta-title {
+    font-family: 'Amiri', serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .lawyer-cta-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    opacity: 0.9;
+  }
+
+  .lawyer-cta-btn {
+    padding: 12px 24px;
+    background: white;
+    color: var(--burgundy);
+    border: none;
+    border-radius: 10px;
+    font-family: 'Amiri', serif;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+
+  .lawyer-cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Disclaimer */
+  .disclaimer-box {
+    background: var(--paper-warm);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .disclaimer-icon {
+    color: var(--gold);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .disclaimer-text {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+  }
+
+  .disclaimer-text strong {
+    color: var(--ink);
+    font-weight: 700;
+  }
+
+  /* Action footer */
+  .action-footer {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 24px 0;
+  }
+
+  .btn-secondary {
+    padding: 12px 22px;
+    background: var(--paper);
+    color: var(--ink);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--ink);
+    background: var(--paper-warm);
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 64px;
+    padding: 32px;
+    text-align: center;
+    border-top: 1px solid var(--line);
+    font-size: 12px;
+    color: var(--ink-mute);
+  }
+
+  .footer-brand {
+    font-family: 'Amiri', serif;
+    font-size: 16px;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .container { padding: 24px 16px; }
+    .question-section, .processing, .paywall { padding: 24px 20px; }
+    .verdict-box, .section-block, .lawyer-cta, .report-header { padding: 24px 20px; }
+    .lawyer-cta { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <div class="brand-cluster">
+    <div class="brand-emblem">
+      <span class="letter">م</span>
+    </div>
+    <div class="brand-text-cluster">
+      <div class="name">مَشورة</div>
+      <div class="tag">Legal AI Consultation</div>
+    </div>
+  </div>
+  <div class="header-meta">
+    <div class="ministry-badge">
+      <svg class="ministry-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+      </svg>
+      <span>بالشراكة مع مكاتب محاماة مرخصة</span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ========== STEP 1: Hero + Topic Selection ========== -->
+  <div id="step1">
+
+    <div class="hero">
+      <div class="hero-eyebrow">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2l3 6 6 1-5 5 1 7-5-3-5 3 1-7-5-5 6-1z"/>
+        </svg>
+        <span>أول استشارة قانونية ذكية في المملكة</span>
+      </div>
+      <h1 class="hero-title">استشارتك القانونية،<br><span class="accent">في دقائق معدودة</span></h1>
+      <p class="hero-sub">احصل على رأي قانوني أولي مدعوم بالأنظمة السعودية المحدثة، مع توصيات واضحة للخطوات التالية. بسرية تامة وبدون مواعيد.</p>
+    </div>
+
+    <div class="hero-divider">
+      <span class="ornament">❖</span>
+    </div>
+
+    <div class="topics-section">
+      <div class="section-label">اختر مجال الاستشارة</div>
+      <div class="topics-grid">
+
+        <div class="topic-card" data-topic="personal">
+          <div class="topic-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <div class="topic-name">الأحوال الشخصية</div>
+          <div class="topic-desc">طلاق، حضانة، نفقة، ميراث</div>
+        </div>
+
+        <div class="topic-card" data-topic="labor">
+          <div class="topic-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+            </svg>
+          </div>
+          <div class="topic-name">نظام العمل</div>
+          <div class="topic-desc">الفصل، الراتب، نهاية الخدمة</div>
+        </div>
+
+        <div class="topic-card" data-topic="rent">
+          <div class="topic-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+          </div>
+          <div class="topic-name">الإيجارات</div>
+          <div class="topic-desc">عقود، إخلاء، نزاعات</div>
+        </div>
+
+        <div class="topic-card" data-topic="commercial">
+          <div class="topic-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M20 7h-4V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+            </svg>
+          </div>
+          <div class="topic-name">الأنظمة التجارية</div>
+          <div class="topic-desc">شركات، عقود، ديون</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Question form (appears after topic selection) -->
+    <div id="questionSection" class="question-section">
+      <div class="question-head">
+        <div>
+          <div class="question-title">اشرح حالتك بالتفصيل</div>
+          <div class="question-title-sub">كلما كان الشرح أوضح، كانت الاستشارة أدق</div>
+        </div>
+        <div id="selectedTopicPill" class="selected-topic-pill"></div>
+      </div>
+
+      <textarea id="questionText" class="question-textarea" placeholder="اكتب تفاصيل حالتك هنا...
+
+مثال: متزوجة منذ 5 سنوات ولدي طفلة عمرها 3 سنوات. زوجي مسافر منذ 8 أشهر ولا يرسل أي نفقة. أريد معرفة حقوقي الشرعية والقانونية وما هي الخطوات التي يمكنني اتخاذها."></textarea>
+
+      <div id="suggestedQuestions" class="suggested"></div>
+
+      <div class="submit-row">
+        <div class="privacy-note">
+          <svg class="privacy-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <span>بياناتك مشفرة وسرية تماماً</span>
+        </div>
+        <button id="submitBtn" class="btn-primary" onclick="startAnalysis()">
+          <span>ابدأ التحليل القانوني</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="19" y1="12" x2="5" y2="12"/>
+            <polyline points="12 19 5 12 12 5"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ========== STEP 3: Processing ========== -->
+  <div id="processing" class="processing">
+    <div class="proc-emblem">
+      <span class="proc-emblem-inner">⚖</span>
+    </div>
+    <div class="proc-title">جارٍ تحليل حالتك القانونية</div>
+    <div class="proc-sub">الذكاء الاصطناعي يطابق قضيتك مع الأنظمة السعودية المحدثة</div>
+    <div class="proc-steps" id="procStepsList"></div>
+  </div>
+
+  <!-- ========== STEP 4: Paywall ========== -->
+  <div id="paywall" class="paywall">
+    <div class="paywall-eyebrow">✓ تم تحليل حالتك بنجاح</div>
+    <div class="paywall-title">استشارتك جاهزة للعرض</div>
+    <div class="paywall-sub">حلّل الذكاء الاصطناعي حالتك واستخرج <strong>4 توصيات قانونية</strong> مدعومة بالأنظمة. أكمل الدفع لعرض التقرير الكامل.</div>
+
+    <div class="paywall-preview">
+      <div class="preview-row">
+        <svg class="preview-row-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        <div class="preview-row-text">حالتك تندرج تحت أحكام نظام الأحوال الشخصية الصادر بالمرسوم الملكي م/73 لعام 1443هـ...</div>
+      </div>
+      <div class="preview-row">
+        <svg class="preview-row-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        <div class="preview-row-text blur">تستحقين النفقة وفقاً للمادة 53 من النظام بشروط محددة وهي...</div>
+      </div>
+      <div class="preview-row">
+        <svg class="preview-row-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        <div class="preview-row-text blur">الخطوات المقترحة تبدأ بتقديم طلب لمحكمة الأحوال الشخصية...</div>
+      </div>
+    </div>
+
+    <div class="price-card">
+      <span class="price-amount">50</span>
+      <span class="price-currency">ر.س</span>
+    </div>
+    <div class="price-note">رسوم الاستشارة الكاملة • مرة واحدة فقط</div>
+
+    <button class="pay-button" onclick="processPayment()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="2" y="5" width="20" height="14" rx="2" ry="2"/>
+        <line x1="2" y1="10" x2="22" y2="10"/>
+      </svg>
+      <span>ادفع الآن واعرض الاستشارة</span>
+    </button>
+
+    <div class="payment-methods">
+      <div class="pay-method">Apple Pay</div>
+      <div class="pay-method">مدى</div>
+      <div class="pay-method">Visa / Mastercard</div>
+      <div class="pay-method">stc pay</div>
+    </div>
+  </div>
+
+  <!-- ========== STEP 5: Final Report ========== -->
+  <div id="report" class="report">
+
+    <!-- Report header -->
+    <div class="report-header">
+      <div class="report-meta-row">
+        <div class="report-meta-left">
+          <div class="report-meta-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+            </svg>
+          </div>
+          <div class="report-meta-info">
+            <div class="label">استشارة قانونية</div>
+            <div class="title" id="reportTopic">الأحوال الشخصية</div>
+          </div>
+        </div>
+        <div class="report-meta-right">
+          <div class="report-id">REF: MSH-2026-04-7821</div>
+          <div>التاريخ: 24 أبريل 2026</div>
+        </div>
+      </div>
+
+      <div class="report-title-main" id="reportTitle">رأي قانوني في طلب النفقة وحقوق الزوجة المهجورة</div>
+
+      <div class="report-customer-question" id="reportQuestion">
+        "متزوجة منذ 5 سنوات ولدي طفلة عمرها 3 سنوات. زوجي مسافر منذ 8 أشهر ولا يرسل أي نفقة. أريد معرفة حقوقي الشرعية والقانونية وما هي الخطوات التي يمكنني اتخاذها."
+      </div>
+    </div>
+
+    <!-- Verdict -->
+    <div class="verdict-box">
+      <div class="verdict-eyebrow">⚖ الخلاصة القانونية</div>
+      <div class="verdict-title">حقوقك مكفولة نظاماً وشرعاً</div>
+      <div class="verdict-text" id="verdictText">
+        بناءً على تحليل حالتك، فإن لكِ الحق في <strong>المطالبة بالنفقة الزوجية والنفقة على الطفلة</strong> وفقاً لأحكام نظام الأحوال الشخصية السعودي. كما يحق لكِ رفع <strong>دعوى هجر</strong> بعد ثبوت الهجران لأكثر من 4 أشهر بدون عذر شرعي. الأنظمة السعودية الحديثة تكفل لك حماية كاملة، والإجراءات أصبحت رقمية ومُيسّرة.
+      </div>
+    </div>
+
+    <!-- Section 1: Legal Analysis -->
+    <div class="section-block">
+      <div class="section-head">
+        <div class="section-num">١</div>
+        <div class="section-name">التحليل القانوني للحالة</div>
+      </div>
+      <div class="section-body">
+        <p>حالتك تتعلق بشكل مباشر بأحكام <strong>نظام الأحوال الشخصية</strong> الصادر بالمرسوم الملكي رقم (م/73) وتاريخ 6/8/1443هـ. النظام الجديد قدّم حماية واضحة لحقوق الزوجة في حالات الهجر وعدم الإنفاق.</p>
+
+        <div class="article-citation">
+          <div class="article-citation-source">المادة 53 — نظام الأحوال الشخصية</div>
+          <div class="article-citation-text">
+            "تجب نفقة الزوجة على زوجها بالعقد الصحيح، ولو كانت موسرة أو مختلفة معه في الدين، وتشمل النفقة الطعام والكسوة والسكن وتوابعها بحسب العرف."
+          </div>
+        </div>
+
+        <p>كما أن المادة (78) تضمن نفقة الأبناء على والدهم باعتبارها <strong>واجباً شرعياً ونظامياً</strong> لا يسقط بحال من الأحوال، طالما الأب قادر على الكسب.</p>
+
+        <p>وفيما يخص الهجر، فإن المادة (40) من النظام تعطيكِ حق طلب التفريق إذا ثبت هجر الزوج لمدة <strong>تزيد على أربعة أشهر بدون عذر شرعي</strong>.</p>
+      </div>
+    </div>
+
+    <!-- Section 2: Your Rights -->
+    <div class="section-block">
+      <div class="section-head">
+        <div class="section-num">٢</div>
+        <div class="section-name">حقوقك المكفولة نظاماً</div>
+      </div>
+      <div class="section-body">
+        <p><strong>الحقوق المالية:</strong></p>
+        <ol class="steps-list">
+          <li class="steps-list-item">
+            <div class="step-content">
+              <div class="step-content-title">النفقة الزوجية</div>
+              <div class="step-content-desc">تشمل المسكن، الطعام، الكسوة، والعلاج. تقدر المحكمة المبلغ بناءً على دخل الزوج ومستوى المعيشة المعتاد.</div>
+            </div>
+          </li>
+          <li class="steps-list-item">
+            <div class="step-content">
+              <div class="step-content-title">نفقة الطفلة</div>
+              <div class="step-content-desc">واجبة على الأب حتى بلوغ سن الرشد، وتشمل الحضانة، التعليم، العلاج، والاحتياجات الأساسية.</div>
+            </div>
+          </li>
+          <li class="steps-list-item">
+            <div class="step-content">
+              <div class="step-content-title">النفقة المتأخرة</div>
+              <div class="step-content-desc">يحق لكِ المطالبة بنفقة الـ 8 أشهر السابقة كدين مستحق على الزوج.</div>
+            </div>
+          </li>
+        </ol>
+
+        <p style="margin-top: 16px;"><strong>الحقوق الشخصية:</strong> حق طلب التفريق للهجر، حق المطالبة بالحضانة الكاملة، وحق الانتقال إلى منزل الأهل مع الحفاظ على حقوقك.</p>
+      </div>
+    </div>
+
+    <!-- Section 3: Recommended Steps -->
+    <div class="section-block">
+      <div class="section-head">
+        <div class="section-num">٣</div>
+        <div class="section-name">الخطوات المقترحة بالترتيب</div>
+      </div>
+      <div class="section-body">
+        <ol class="steps-list">
+          <li class="steps-list-item">
+            <div class="step-content">
+              <div class="step-content-title">توثيق الحالة</div>
+              <div class="step-content-desc">جمع كل الأدلة: رسائل واتساب، تحويلات بنكية (أو عدمها)، شهود على الهجر، تواريخ السفر.</div>
+            </div>
+          </li>
+          <li class="steps-list-item">
+            <div class="step-content">
+              <div class="step-content-title">رفع طلب نفقة عاجلة عبر "ناجز"</div>
+              <div class="step-content-desc">من خلال منصة ناجز الإلكترونية، اختر "محاكم الأحوال الشخصية" ثم "طلب نفقة عاجلة". الإجراء مجاني ولا يحتاج محامي للبدء.</div>
+            </div>
+          </li>
+          <li class="steps-list-item">
+            <div class="step-content">
+              <div class="step-content-title">طلب فرض نفقة من صندوق النفقة</div>
+              <div class="step-content-desc">إن تأخر الزوج في السداد بعد الحكم، يمكنكِ التقديم لـ"صندوق النفقة" الذي يصرف لكِ النفقة شهرياً ويتولى تحصيلها من الزوج.</div>
+            </div>
+          </li>
+          <li class="steps-list-item">
+            <div class="step-content">
+              <div class="step-content-title">دعوى هجر (اختياري)</div>
+              <div class="step-content-desc">إن استمر الوضع، يمكنكِ رفع دعوى تفريق للهجر بعد توثيق مرور أكثر من 4 أشهر بدون عذر شرعي.</div>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- Section 4: Considerations -->
+    <div class="section-block">
+      <div class="section-head">
+        <div class="section-num">٤</div>
+        <div class="section-name">اعتبارات مهمة</div>
+      </div>
+      <div class="section-body">
+        <p>قبل اتخاذ أي قرار، يُنصح بمراعاة الآتي:</p>
+
+        <p><strong>أولاً:</strong> النظام السعودي يفضل الإصلاح قبل التقاضي. حاولي التواصل مع الزوج (إن أمكن) أو إرسال إنذار رسمي عبر كاتب عدل قبل رفع الدعوى.</p>
+
+        <p><strong>ثانياً:</strong> دعاوى الأحوال الشخصية تحتاج وقت (3-6 أشهر للحكم النهائي عادة)، لكن يمكن الحصول على <strong>نفقة عاجلة</strong> خلال أسابيع.</p>
+
+        <p><strong>ثالثاً:</strong> رسوم التقاضي في الأحوال الشخصية <strong>مجانية</strong>، لكن قد تحتاجين محامي للحالات المعقدة (تكلفة متوقعة 5,000-15,000 ر.س).</p>
+
+        <p><strong>رابعاً:</strong> حضانة الطفلة في عمرها (3 سنوات) <strong>مكفولة لكِ نظاماً</strong> دون نزاع غالباً، حيث تكون الحضانة للأم في السنوات الأولى.</p>
+      </div>
+    </div>
+
+    <!-- Lawyer CTA -->
+    <div class="lawyer-cta">
+      <div class="lawyer-cta-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="8.5" cy="7" r="4"/>
+          <line x1="20" y1="8" x2="20" y2="14"/>
+          <line x1="23" y1="11" x2="17" y2="11"/>
+        </svg>
+      </div>
+      <div class="lawyer-cta-content">
+        <div class="lawyer-cta-eyebrow">✦ خطوة متقدمة</div>
+        <div class="lawyer-cta-title">احصل على محامية مرخصة لمتابعة قضيتك</div>
+        <div class="lawyer-cta-desc">نوصي بمحامية متخصصة في الأحوال الشخصية لتمثيلك أمام المحكمة. خصم 15% للعملاء.</div>
+      </div>
+      <button class="lawyer-cta-btn" onclick="bookLawyer()">
+        احجز موعد مجاني
+      </button>
+    </div>
+
+    <!-- Disclaimer -->
+    <div class="disclaimer-box">
+      <svg class="disclaimer-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10"/>
+        <line x1="12" y1="8" x2="12" y2="12"/>
+        <line x1="12" y1="16" x2="12.01" y2="16"/>
+      </svg>
+      <div class="disclaimer-text">
+        <strong>تنبيه قانوني مهم:</strong> هذه الاستشارة تمثل <strong>توجيهاً أولياً إرشادياً</strong> مبنياً على المعطيات التي قدمتها وعلى تحليل الأنظمة السعودية المعتمدة. لا تُعد هذه الاستشارة <strong>رأياً قانونياً نهائياً ملزماً</strong>، ولا تغني عن استشارة محامٍ مرخص في الحالات المعقدة أو عند رغبتك في التمثيل أمام المحاكم. الحالات الجنائية والقضايا التي تتطلب مرافعة أمام المحاكم يجب أن تُحال إلى محامٍ مرخص.
+      </div>
+    </div>
+
+    <div class="action-footer">
+      <button class="btn-primary" onclick="alert('سيتم تحميل التقرير كملف PDF')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        تحميل التقرير PDF
+      </button>
+      <button class="btn-secondary" onclick="resetApp()">
+        استشارة جديدة
+      </button>
+      <button class="btn-secondary" onclick="alert('سيتم إرسال نسخة لبريدك الإلكتروني')">
+        إرسال نسخة بالبريد
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-brand">مَشورة</div>
+    <div>منصة استشارات قانونية ذكية مدعومة بالذكاء الاصطناعي</div>
+    <div style="margin-top: 8px;">© 2026 — مرخصة من وزارة العدل • بالشراكة مع مكاتب محاماة معتمدة</div>
+  </div>
+
+</div>
+
+<script>
+// ============ Topic data ============
+const TOPICS = {
+  personal: {
+    name: 'الأحوال الشخصية',
+    suggested: [
+      'أريد الطلاق وأخاف على حضانة أطفالي',
+      'زوجي لا ينفق عليّ منذ أشهر',
+      'كيف أحصل على نفقة الأطفال؟',
+      'لي حق في الميراث ولكن أخوتي يرفضون'
+    ]
+  },
+  labor: {
+    name: 'نظام العمل',
+    suggested: [
+      'تم فصلي من العمل بشكل تعسفي',
+      'صاحب العمل لا يدفع راتبي',
+      'كيف أحسب مكافأة نهاية الخدمة؟',
+      'أريد الاستقالة بدون فقدان حقوقي'
+    ]
+  },
+  rent: {
+    name: 'الإيجارات',
+    suggested: [
+      'صاحب العقار يطلب إخلائي قبل انتهاء العقد',
+      'المؤجر يرفض إصلاح أعطال الشقة',
+      'أريد إنهاء عقد الإيجار مبكراً',
+      'تم زيادة الإيجار بدون تنبيه'
+    ]
+  },
+  commercial: {
+    name: 'الأنظمة التجارية',
+    suggested: [
+      'شريكي في الشركة لا يلتزم بالعقد',
+      'عميل لم يدفع مستحقاتي منذ 6 أشهر',
+      'أريد فسخ عقد توريد مع مورد',
+      'كيف أتعامل مع شيك مرتجع؟'
+    ]
+  }
+};
+
+let selectedTopic = null;
+
+// ============ Topic selection ============
+document.querySelectorAll('.topic-card').forEach(card => {
+  card.addEventListener('click', () => {
+    document.querySelectorAll('.topic-card').forEach(c => c.classList.remove('active'));
+    card.classList.add('active');
+    selectedTopic = card.dataset.topic;
+
+    const topic = TOPICS[selectedTopic];
+    document.getElementById('selectedTopicPill').innerHTML = `
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+      <span>${topic.name}</span>
+    `;
+
+    // Suggested questions
+    const sugWrap = document.getElementById('suggestedQuestions');
+    sugWrap.innerHTML = '<div class="suggested-label">أو اختر سؤالاً شائعاً للبدء:</div>' +
+      topic.suggested.map(q => `<button class="suggested-chip" onclick="document.getElementById('questionText').value='${q.replace(/'/g, "\\'")}'">${q}</button>`).join('');
+
+    // Show form
+    document.getElementById('questionSection').classList.add('show');
+
+    setTimeout(() => {
+      document.getElementById('questionSection').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 200);
+  });
+});
+
+// ============ Processing steps ============
+const PROC_STEPS = [
+  'فهم وتصنيف نوع الاستشارة القانونية',
+  'البحث في نظام الأحوال الشخصية والأنظمة ذات العلاقة',
+  'استخراج المواد القانونية المنطبقة على حالتك',
+  'تحليل السوابق القضائية المماثلة',
+  'صياغة التوصيات والخطوات العملية',
+  'مراجعة ختامية وتدقيق الاستشارة'
+];
+
+async function startAnalysis() {
+  const text = document.getElementById('questionText').value.trim();
+  if (!text || !selectedTopic) {
+    alert('يرجى اختيار مجال الاستشارة وكتابة استفسارك');
+    return;
+  }
+
+  // Hide step1, show processing
+  document.getElementById('step1').style.display = 'none';
+  document.getElementById('processing').classList.add('show');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  const stepsList = document.getElementById('procStepsList');
+  stepsList.innerHTML = '';
+
+  for (let i = 0; i < PROC_STEPS.length; i++) {
+    const el = document.createElement('div');
+    el.className = 'proc-step active';
+    el.style.animationDelay = (i * 0.05) + 's';
+    el.innerHTML = `
+      <div class="proc-step-dot"></div>
+      <div class="proc-step-text">${PROC_STEPS[i]}</div>
+    `;
+    stepsList.appendChild(el);
+
+    await sleep(700 + Math.random() * 400);
+
+    el.classList.remove('active');
+    el.classList.add('done');
+  }
+
+  await sleep(500);
+
+  document.getElementById('processing').classList.remove('show');
+  document.getElementById('paywall').classList.add('show');
+
+  // Update report content based on user input
+  document.getElementById('reportTopic').textContent = TOPICS[selectedTopic].name;
+  document.getElementById('reportQuestion').textContent = '"' + text + '"';
+
+  setTimeout(() => {
+    document.getElementById('paywall').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 200);
+}
+
+// ============ Payment ============
+async function processPayment() {
+  const btn = event.target.closest('.pay-button');
+  const original = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="animation: spin 1s linear infinite;"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg><span>جاري معالجة الدفع...</span>';
+
+  await sleep(1800);
+
+  document.getElementById('paywall').classList.remove('show');
+  document.getElementById('report').classList.add('show');
+
+  setTimeout(() => {
+    document.getElementById('report').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 200);
+}
+
+// ============ Helpers ============
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+function resetApp() {
+  document.getElementById('report').classList.remove('show');
+  document.getElementById('paywall').classList.remove('show');
+  document.getElementById('processing').classList.remove('show');
+  document.getElementById('questionSection').classList.remove('show');
+  document.querySelectorAll('.topic-card').forEach(c => c.classList.remove('active'));
+  document.getElementById('questionText').value = '';
+  selectedTopic = null;
+  document.getElementById('step1').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function bookLawyer() {
+  alert('في المنتج النهائي: تظهر قائمة بالمحاميات المعتمدات في تخصص الأحوال الشخصية مع إمكانية حجز موعد مجاني');
+}
+</script>
+</body>
+</html>
